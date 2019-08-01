@@ -13,6 +13,12 @@ class Todo extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        fetch('https://jsonplaceholder.typicode.com/todos')
+          .then(response => response.json())
+          .then(items => this.setState({ items }));
+      }
+
     render() {
         return (
             <div>
@@ -42,7 +48,7 @@ class Todo extends React.Component {
         }
         const newItem = {
             id: Date.now(),
-            text: this.state.text,
+            title: this.state.text,
         }
         this.setState(prev => ({
             items: prev.items.concat(newItem),
@@ -56,7 +62,7 @@ class TodoList extends React.Component {
         return (
             <ul>
                 {this.props.items.map(item => (
-                    <li key={item.id}>{item.text}</li>
+                    <li key={item.id}>{item.title}</li>
                 ))}
             </ul>
         )
