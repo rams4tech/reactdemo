@@ -22,7 +22,7 @@ class Todo extends React.Component {
     render() {
         return (
             <div>
-                <h3>TODO</h3>
+                <h3>Todo List</h3>
                 <TodoList items={this.state.items}/>
                 <form onSubmit={this.handleSubmit}>
                     <input
