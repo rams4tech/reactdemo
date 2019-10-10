@@ -15,27 +15,25 @@ class Todo extends React.Component {
 
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/todos')
-            .then(response => response.json())
-            .then(items => this.setState({ items }));
-    }
+          .then(response => response.json())
+          .then(items => this.setState({ items }));
+      }
 
     render() {
-        return ( <
-            div >
-            <
-            h3 > TODO List < /h3> <
-            TodoList items = { this.state.items }
-            /> <
-            form onSubmit = { this.handleSubmit } >
-            <
-            input onChange = { this.handleChange }
-            value = { this.state.text }
-            /> <
-            button >
-            Add# { this.state.items.length + 1 } <
-            /button> <
-            /form> <
-            /div>
+        return (
+            <div>
+                <h3>Todo List</h3>
+                <TodoList items={this.state.items}/>
+                <form onSubmit={this.handleSubmit}>
+                    <input
+                        onChange={this.handleChange}
+                        value={this.state.text}
+                    />
+                    <button>
+                        Add #{this.state.items.length + 1}
+                    </button>
+                </form>
+            </div>
         );
     }
 
@@ -45,7 +43,7 @@ class Todo extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (!this.state.text.length) {
+        if(!this.state.text.length) {
             return;
         }
         const newItem = {
@@ -61,13 +59,12 @@ class Todo extends React.Component {
 
 class TodoList extends React.Component {
     render() {
-        return ( <
-            ul > {
-                this.props.items.map(item => ( <
-                    li key = { item.id } > { item.title } < /li>
-                ))
-            } <
-            /ul>
+        return (
+            <ul>
+                {this.props.items.map(item => (
+                    <li key={item.id}>{item.title}</li>
+                ))}
+            </ul>
         )
     }
 }
@@ -75,7 +72,7 @@ class TodoList extends React.Component {
 
 // ========================================
 
-ReactDOM.render( <
-    Todo / > ,
+ReactDOM.render(
+    <Todo />,
     document.getElementById('root')
 );
